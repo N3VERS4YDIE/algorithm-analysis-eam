@@ -22,15 +22,16 @@ function t_simulation(n::Int)::Tuple{Int,Int}
     return e, s
 end
 
-N2 = 10
 println("\nSOLUTION 2 -------------------")
 println("T(n) = 5 + 7n + 3n ⌊log2(n)⌋")
 println("------------------------------")
-println("FUNCTION VS SIMULATION")
+println("SIMULATION VS FUNCTION")
 
-for i in 1:N2
-    e1, su1 = t_simulation(i)
-    e2, su2 = t_function(i)
-    comparison = e1 == e2 && su1 == su2
-    println("T($i) = $e1 == $e2  &&  su = $su1 == $su2  =>  $comparison")
+N = 10
+
+for i in 1:N
+    simulation_executions, simulation_result = t_simulation(i)
+    function_executions, function_result = t_function(i)
+    comparison = simulation_executions == function_executions && simulation_result == function_result
+    println("T($i) = $simulation_executions == $function_executions  &&  su = $simulation_result == $function_result  =>  $comparison")
 end
