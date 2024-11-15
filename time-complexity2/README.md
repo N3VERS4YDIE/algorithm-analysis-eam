@@ -1,4 +1,4 @@
-# Exercise 2
+# Time Complexity 2
 
 Determine the "time complexity T(n)"
 
