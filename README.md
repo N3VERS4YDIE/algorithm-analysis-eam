@@ -14,7 +14,7 @@ Analysis of Algorithms, Faculty of Sofware Engineering, EAM (2024-2).
 2. To run any code solution from the terminal, run the following command from the root directory of the repository:
 
    ```bash
-   julia <folder>/main.jl
+   julia project=. <folder>/main.jl
    ```
 
 > [!NOTE]
