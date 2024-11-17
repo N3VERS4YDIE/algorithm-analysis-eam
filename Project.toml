@@ -1,5 +1,6 @@
 [deps]
 AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
+AlgebraicSolving = "66b61cbe-0446-4d5d-9090-1ff510639f9d"
 PrettyTables = "08abe8d2-0d0c-5749-adfa-8a2ac140af0d"
 Term = "22787eb5-b846-44ae-b979-8e399b8463ab"
 TreeView = "39424ebd-4cf3-5550-a685-96706a953f40"

@@ -1,90 +1,163 @@
 # Binary Tree
 
-## Problem
+## Most important features provided in this project
 
-1. Design:
+- Support for binary trees with artihmetic, algebraic, logical and bitwise expressions
+- Binary trees traversal in pre-order, in-order, and post-order
+- Evaluate and obtain the result of almost any formed expression from a binary tree
+- Output binary trees with a hierarchical human-readable format
 
-   - The binary tree for the following numerical sequence: `14, 15, 4, 9, 7, 18, 3, 5, 16, 4, 20, 17`.
-   - Pre-order traversal of the resulting tree.
-   - In-order traversal of the resulting tree.
-   - Post-order traversal of the resulting tree.
+---
 
-1. Do the same for the Reversed numerical sequence: `17, 20, 4, 16, 5, 3, 18, 7, 9, 4, 15, 14`.
+> [!Note]
+> The following sections are solved problems about binary trees and their traversals, as well as algebraic expressions converted to binary trees and vice versa.
 
-## Solution
+## Design a binary tree and traverse it
 
-1. **Binary Tree**
+Numerical sequence:
+`14, 15, 4, 9, 7, 18, 3, 5, 16, 4, 20, 17`.
 
-Nodes
+Tree:
 
 ```julia
-[14, 15, 4, 9, 7, 18, 3, 5, 16, 4, 20, 17]
+                                     14
+                    ┌─────────────────┴─────────────────┐
+                   15                                    4
+          ┌─────────┴────────┐                    ┌──────┴──────┐
+         9                   7                   18             3
+     ┌────┴───┐          ┌────┴───┐          ┌────┴
+    5         16        4         20        17
 ```
 
-Tree
+Inorder Traversal:
+`5, 9, 16, 15, 4, 7, 20, 14, 17, 18, 4, 3`
+
+Preorder Traversal:
+`14, 15, 9, 5, 16, 7, 4, 20, 4, 18, 17, 3`
+
+Postorder Traversal:
+`5, 16, 9, 4, 20, 7, 15, 17, 18, 3, 4, 14`
+
+## Same as above but with reversed numerical sequence
+
+Reversed numerical sequence:
+`17, 20, 4, 16, 5, 3, 18, 7, 9, 4, 15, 14`
+
+Tree:
 
 ```julia
-         14
-       /    \
-     15       4
-    /  \     /  \
-   9    7   18   3
-  / \  / \    \
- 5  16 4  20   17
+                                     17
+                    ┌─────────────────┴─────────────────┐
+                   20                                    4
+          ┌─────────┴────────┐                    ┌──────┴──────┐
+         16                  5                   3              18
+     ┌────┴───┐          ┌────┴───┐          ┌────┴
+    7         9         4         15        14
 ```
 
-Preorder traversal
+Inorder Traversal:
+`7, 16, 9, 20, 4, 5, 15, 17, 14, 3, 4, 18`
 
-```julia
-[14, 15, 9, 5, 16, 7, 4, 20, 4, 18, 17, 3]
+Preorder Traversal:
+`17, 20, 16, 7, 9, 5, 4, 15, 4, 3, 14, 18`
+
+Postorder Traversal:
+`7, 9, 16, 4, 15, 5, 20, 14, 3, 18, 4, 17`
+
+## Algebraic expressions to binary trees
+
+Expression:
+
+```math
+Y * X / (A + B) * C
 ```
 
-Inorder traversal
+Tree:
 
 ```julia
-[5, 9, 16, 15, 4, 7, 20, 14, 17, 18, 4, 3]
+                  /
+     ┌────────────┴────────────┐
+    *                           *
+┌────┴───┐               ┌──────┴──────┐
+Y         X              +              C
+                    ┌────┴───┐
+                   A         B
 ```
 
-Postorder traversal
+---
 
-```julia
-[5, 16, 9, 4, 20, 7, 15, 17, 18, 3, 4, 14]
+Expression:
+
+```math
+X * Y / A + B * C
 ```
 
-1. **Inverted Binary Tree**
-
-Nodes
+Tree:
 
 ```julia
-[17, 20, 4, 16, 5, 3, 18, 7, 9, 4, 15, 14]
+                          +
+               ┌──────────┴──────────┐
+               /                     *
+        ┌──────┴──────┐         ┌────┴───┐
+        *              A       B         C
+   ┌────┴───┐
+   X         Y
 ```
 
-Tree
+## Binary trees to algebraic expressions (in-order)
+
+Tree:
 
 ```julia
-         17
-       /    \
-     20       4
-    /  \     /  \
-  16    5   3    18
- /  \  / \    \
-7    9 4  15   14
+                   +
+         ┌─────────┴────────┐
+        *                   /
+    ┌────┴───┐          ┌────┴───┐
+   a         b         c         d
 ```
 
-Preorder traversal
+Expression:
 
-```julia
-[17, 20, 16, 7, 9, 5, 4, 15, 4, 3, 14, 18]
+```math
+(a * b) + (c / d) = a*b + c/d
 ```
 
-Inorder traversal
+---
+
+Tree:
 
 ```julia
-[7, 16, 9, 20, 4, 5, 15, 17, 14, 3, 4, 18]
+                        +
+               ┌────────┴───────┐
+               +                d
+        ┌──────┴──────┐
+       +              c
+   ┌────┴───┐
+  a         b
 ```
 
-Postorder traversal
+Expression:
+
+```math
+((a + b) + c) + d = a + b + c + d
+```
+
+---
+
+Tree:
 
 ```julia
-[7, 9, 16, 4, 15, 5, 20, 14, 3, 18, 4, 17]
+                                /
+            ┌───────────────────┴──────────────────┐
+           +                                       *
+  ┌─────────┴────────┐                    ┌─────────┴────────┐
+ -                   +                   +                   *
+ ┴───┐          ┌────┴───┐               ┴───┐          ┌────┴───┐
+      a         x         y                   b         c         d
+```
+
+Expression:
+
+```math
+( - a) + (x + y) / ( + b) * (c * d) = (-a + x + y) / b * c * d
 ```
